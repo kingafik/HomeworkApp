@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Homework App</title>
+    <link rel="stylesheet" href="themes/my-custom-theme.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" src="Login.js"></script>
+</head>
+<body>
+<!-- Login page -->
+<div data-role="page" data-theme="a" id="LoginPage">
+    <div data-role="header" data-position="fixed">
+        <h1 />My Homework</h1>
+    </div>
+    <div data-role="content" data-theme="a">
+        <form name="Login" id="Login" action="Login.js" method="get">
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="LoginPageUserName">UserName:</label>
+                <input type="text" name="LoginPageUserName" id="LoginPageUserName" value="" placeholder="UserName" style="text-align:center" class="required"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="LoginPagePassword">Password:</label>
+                <input type="password" name="LoginPagePassword" id="LoginPagePassword" value="" placeholder="Password" style="text-align:center" class="required"/>
+            </div>
+            <div style="text-align:center">
+                <button id="login_submit" type="submit" data-icon="star" data-theme="a" data-ajax="false" onclick="UserLogin()">Login</button>
+            </div>
+            <div style="text-align:center">
+                <a href="#SignUpPage" data-role="button" data-icon="plus" data-inline="false" data-ajax="false">Sign up</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Sign up page -->
+<div data-role="page" data-theme="a" id="SignUpPage">
+    <div data-role="header" data-position="fixed">
+        <h1 />Sign up</h1>
+    </div>
+    <div data-role="content" data-theme="a">
+        <form name="SignUp" action="Login.js" method="get">
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="SignUpPageUserName">UserName:</label>
+                <input type="text" name="SignUpPageUserName" id="SignUpPageUserName" placeholder="UserName" style="text-align:center" class="required"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="SignUpPagePassword">Password:</label>
+                <input type="password" name="SignUpPagePassword" id="SignUpPagePassword" value="" placeholder="Password" style="text-align:center" class="required"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="SignUpPagePasswordConfirm">PasswordConfirm:</label>
+                <input type="password" name="SignUpPagePasswordConfirm" id="SignUpPagePasswordConfirm" value="" placeholder="Confirm your password" style="text-align:center" class="required"/>
+            </div>
+            <div style="text-align:center">
+                <button id="SignUp_submit" type="submit" data-icon="star" data-theme="a" onclick="UserSignUpValidate()" >Sign up</button>
+            </div>
+            <div style="text-align:center">
+                <a href="#Login" data-role="button" data-icon="delete" data-inline="false" data-ajax="false">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

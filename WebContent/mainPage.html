@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Homework App</title>
+    <link rel="stylesheet" href="themes/my-custom-theme.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).bind('mobileinit',function()
+        {
+            $.mobile.selectmenu.prototype.options.nativeMenu = false;
+        });
+    </script>
+
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="func.js"></script>
+
+</head>
+<body>
+
+<!-- Main page-->
+<div data-role="page" data-theme="a" id="main">
+    <div data-role="header" data-position="fixed">
+        <h1>My Homework</h1>
+    </div>
+    <div data-role="content" data-theme="a">
+        <div align="center">
+            <a href="#HomeWork" class="ui-link" data-inline="true"><img src="images\Notebook2.jpg" width="150" height="150"></a>
+        </div>
+        <div align="center">
+            <a href="#Course" class="ui-link" data-inline="true"><img src="images\Courses.jpg" width="150" height="150"></a>
+        </div>
+        <div align="center">
+            <a href="#About" class="ui-link" data-inline="true"><img src="images\About.jpg" width="150" height="150"></a>
+        </div>
+    </div>
+</div>
+
+<!-- HomeWork page -->
+<div data-role="page" data-theme="a" id="HomeWork">
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">home</a>
+        <h1 />HomeWork</h1>
+        <a href="#NewHomeWork" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true" onclick="setSelectWithCourses('NewSelectCourse')">plus</a>
+    </div>
+    <div data-role="content" data-theme="a">
+    </div>
+    <div data-role="content" data-theme="a" >
+        <ul data-role="listview" id="userHomework" data-split-icon="delete" data-split-theme="g"></ul>
+    </div>
+</div>
+
+<!-- Course page -->
+<div data-role="page" data-theme="a" id="Course">
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">home</a>
+        <h1 />Course</h1>
+        <a href="#NewCourse" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true">plus</a>
+    </div>
+    <div data-role="content" data-theme="a">
+    </div>
+    <div data-role="content" data-theme="a">
+        <ul data-role="listview" data-theme="g" id="userCourses" data-split-icon="delete" data-split-theme="g"></ul>
+    </div>
+</div>
+
+<!-- Account page -->
+<div data-role="page" data-theme="a" id="Account">
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">home</a>
+        <h1 />Account</h1>
+        <a href="index.html" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true">plus</a>
+    </div>
+    <div data-role="content" data-theme="a">
+    </div>
+</div>
+
+<!-- About page -->
+<div data-role="page" data-theme="a" id="About">
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">home</a>
+        <h1 />About</h1>
+    </div>
+    <div data-role="content" data-theme="a" id="aboutPageResponse" style="text-align:center"></div>
+</div>
+
+<!-- New HomeWork page -->
+<div data-role="page" data-theme="a" id="NewHomeWork">
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">home</a>
+        <h1 />New HomeWork</h1>
+        <a href="#HomeWork" data-role="button" data-icon="check" data-iconpos="notext" data-inline="true" onclick="AddHomeWork()">check</a>
+    </div>
+    <div data-role="content" data-theme="a">
+        <form action="" method="get">
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="NewTaskName">Task name:</label>
+                <input type="text" name="NewTaskName" id="NewTaskName" value="" placeholder="Task name" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <select name="NewSelectCourse" id="NewSelectCourse"></select>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <select name="NewSelectType" id="NewSelectType">
+                    <option value="">Type</option>
+                    <option value="HOMEWORK">Homework</option>
+                    <option value="TEST">Test</option>
+                    <option value="QUIZ">Quiz</option>
+                    <option value="PRESENTION">Presentation</option>
+                    <option value="OTHER">Other</option>
+                </select>
+            </div>
+            <div style="text-align:center">
+                <fieldset data-role="controlgroup" data-type="horizontal" id="NewPriority">
+                    <legend>Priority:</legend>
+                    <input type="radio" name="NewPriority" id="New-radio-choice-high" value="HIGH"  />
+                    <label for="New-radio-choice-high">High</label>
+
+                    <input type="radio" name="NewPriority" id="New-radio-choice-medium" value="MEDIUM"  />
+                    <label for="New-radio-choice-medium">Medium</label>
+
+                    <input type="radio" name="NewPriority" id="New-radio-choice-low" value="LOW"  />
+                    <label for="New-radio-choice-low">Low</label>
+                </fieldset>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="NewDueDate">Due date:</label>
+                <input type="date" name="NewDueDate" id="NewDueDate" value="" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="NewHomeworkAdditionalInfo">Additional info:</label>
+                <textarea maxlength='100' name="NewAdditionalInfo" id="NewHomeworkAdditionalInfo" placeholder="Additional info" style="text-align:center"></textarea>
+            </div>
+            <div style="text-align:center" data-position="fixed">
+                <a href="#HomeWork" data-role="button" data-icon="check" data-inline="true" onclick="AddHomeWork()">submit</a>
+                <a href="#HomeWork" data-role="button" data-icon="delete" data-inline="true">cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Edit HomeWork page -->
+<div data-role="page" data-theme="a" id="EditHomeWork">
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">home</a>
+        <h1 />Edit HomeWork</h1>
+        <a href="#HomeWork" data-role="button" data-icon="check" data-iconpos="notext" data-inline="true" onclick="EditHomeWork()">check</a>
+    </div>
+    <div data-role="content" data-theme="a">
+        <form action="" method="get" name="EditHomeworkForm">
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="EditTaskName">Task name:</label>
+                <input type="text" name="EditTaskName" id="EditTaskName" value="" placeholder="Task name" style="text-align:center"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <select name="EditSelectCourse" id="EditSelectCourse"></select>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <select name="EditSelectType" id="EditSelectType">
+                    <option value="">Type</option>
+                    <option value="HOMEWORK">Homework</option>
+                    <option value="TEST">Test</option>
+                    <option value="QUIZ">Quiz</option>
+                    <option value="PRESENTION">Presentation</option>
+                    <option value="OTHER">Other</option>
+                </select>
+            </div>
+            <div style="text-align:center">
+                <fieldset data-role="controlgroup" data-type="horizontal" id="EditPriority">
+                    <legend>Priority:</legend>
+                    <input type="radio" id="Edit-radio-choice-high" name="EditPriority" value="HIGH"  />
+                    <label for="Edit-radio-choice-high">High</label>
+
+                    <input type="radio" id="Edit-radio-choice-medium" name="EditPriority" value="MEDIUM"  />
+                    <label for="Edit-radio-choice-medium">Medium</label>
+
+                    <input type="radio" id="Edit-radio-choice-low" name="EditPriority" value="LOW"  />
+                    <label for="Edit-radio-choice-low">Low</label>
+                </fieldset>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="EditDueDate">Due date:</label>
+                <input type="date" name="EditDueDate" id="EditDueDate" value="" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="EditHomeworkAdditionalInfo">Additional info:</label>
+                <textarea maxlength='100' name="EditAdditionalInfo" id="EditHomeworkAdditionalInfo" placeholder="Additional info" style="text-align:center"></textarea>
+            </div>
+            <div style="text-align:center">
+                <a href="#HomeWork" data-role="button" data-icon="delete" data-inline="true">cancel </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- New Course page -->
+<div data-role="page" data-theme="a" id="NewCourse">
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">home</a>
+        <h1 />Add Course</h1>
+        <a href="#Course" data-role="button" data-icon="check" data-iconpos="notext" data-inline="true" onclick="AddCourse()">check</a>
+    </div>
+    <div data-role="content" data-theme="a">
+        <form action="" method="get">
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="NewCourse">Course name:</label>
+                <input type="text" name="NewCourseName" id="NewCourseName" value="" placeholder="Course Name" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="NewBuilding">Building:</label>
+                <input type="text" name="NewBuilding" id="NewBuilding" value="" placeholder="Building" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="NewRoom">Room:</label>
+                <input type="text" name="NewRoom" id="NewRoom" value="" placeholder="Room" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="NewLecturer">Lecturer:</label>
+                <input type="text" name="NewLecturer" id="NewLecturer" value="" placeholder="Lecturer" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="NewCourseAdditionalInfo">Additional info:</label>
+                <textarea maxlength='100' name="NewAdditionalInfo" id="NewCourseAdditionalInfo" placeholder="Additional info" style="text-align:center"></textarea>
+            </div>
+            <div style="text-align:center">
+                <a href="#Course" data-role="button" data-icon="delete" data-inline="true">cancel </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Edit Course page-->
+<div data-role="page" data-theme="a" id="EditCourse">
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true">home</a>
+        <h1 />Edit Course</h1>
+        <a href="#Course" data-role="button" data-icon="check" data-iconpos="notext" data-inline="true" onclick="EditCourse()">check</a>
+    </div>
+    <div data-role="content" data-theme="a">
+        <form action="" method="get" name="EditCourseForm">
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="EditCourse">Course name:</label>
+                <input type="text" name="EditCourseName" id="EditCourseName" value="" placeholder="Course Name" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="EditBuilding">Building:</label>
+                <input type="text" name="EditBuilding" id="EditBuilding" value="" placeholder="Building" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="EditRoom">Room:</label>
+                <input type="text" name="EditRoom" id="EditRoom" value="" placeholder="Room" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="EditLecturer">Lecturer:</label>
+                <input type="text" name="EditLecturer" id="EditLecturer" value="" placeholder="Lecturer" style="text-align:center" data-clear-btn="true"/>
+            </div>
+            <div data-role="fieldcontain" class="ui-hide-label">
+                <label for="EditCourseAdditionalInfo">Additional info:</label>
+                <textarea maxlength='100' name="EditAdditionalInfo" id="EditCourseAdditionalInfo" placeholder="Additional info" style="text-align:center"></textarea>
+            </div>
+            <div style="text-align:center">
+                <a href="#Course" data-role="button" data-icon="delete" data-inline="true">cancel </a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
